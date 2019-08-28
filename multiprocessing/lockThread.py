@@ -6,7 +6,6 @@
 """
 import threading
 
-import threading
 
 shared_resource_with_lock = 0
 shared_resource_with_no_lock = 0
