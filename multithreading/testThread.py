@@ -10,8 +10,10 @@ import threading
 验证GIL的影响，评估多线程应用的性能
 """
 
+from threading import Thread
 
-class threads_object(threading.Thread):
+
+class threads_object(Thread):
 	def run(self):
 		function_to_run()
 
@@ -40,14 +42,29 @@ def threaded(num_threads):
 
 
 def function_to_run():
-	pass
+	# f = open('a.dat')
+	# size = 1024
+	# for i in range(1000):
+	# 	f.read(size)
+
+	# a,b = 0, 1
+	# for i in range(10000):
+	# 	a, b = b, a+b
+	import requests
+	import urllib.request
+	for i in range(10):
+		with urllib.request.urlopen("https://www.kongwiki.top/")as f:
+			f.read(1024)
 
 
-def show_results(funcname, results):
-	print("%-23s %4.6f seconds" % (funcname, results))
+	# pass
 
 
-if __name__ == '__main__':
+def show_results(func_name, results):
+	print("%-23s %4.6f seconds" % (func_name, results))
+
+
+if __name__ == "__main__":
 	import sys
 	from timeit import Timer
 
@@ -63,3 +80,4 @@ if __name__ == '__main__':
 		best_result = min(t.repeat(repeat=repeat, number=number))
 		show_results("threaded (%s threads)" % i, best_result)
 		print('Iterations complete')
+
