@@ -18,4 +18,13 @@ def target():
 	print("runnning target()")
 
 
-print(target())
+# target()
+
+global c
+
+c = 6
+def f1(a):
+	print(a)
+	print(c)
+	c=3
+f1(2)
